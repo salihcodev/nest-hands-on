@@ -1,6 +1,6 @@
 import { TaskQueryFilterDto } from './../../dtos/tasks/task-query-filter.dto';
 import { CreateTaskDto } from './../../dtos/tasks/create-task.dto';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { TaskModel, TaskStatus } from '../../models/tasks/task.model';
 import { v4 as uuid } from 'uuid';
 
@@ -34,7 +34,15 @@ export class TasksService {
   }
 
   getTaskById(id: string): TaskModel {
-    return this.tasks.find((task) => task.id === id);
+    const found = this.tasks.find((task) => task.id === id);
+
+    if (!found) {
+      throw new NotFoundException(
+        `There's no tasks corresponding to provided id (${id}) !`,
+      );
+    } else {
+      return found;
+    }
   }
 
   createTask(createTaskDto: CreateTaskDto): TaskModel {
@@ -59,6 +67,7 @@ export class TasksService {
   }
 
   deleteTask(id: string): void {
-    this.tasks = this.tasks.filter((task: TaskModel) => task.id !== id);
+    const found = this.getTaskById(id);
+    this.tasks = this.tasks.filter((task: TaskModel) => task.id !== found.id);
   }
 }
