@@ -1,5 +1,5 @@
 import { TaskEntity } from 'src/utilities/entities/task/task.entity';
-import { TaskStatusValidatorPipe } from './../../utilities/pipes/task/task-status-validator.pipe';
+import { TaskStatusValidatorPipe } from '../../utilities/pipes/task/task-status-validator.pipe';
 import { CreateTaskDto } from '../../utilities/dtos/tasks/create-task.dto';
 import {
   Body,
@@ -11,14 +11,17 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
-import { TasksService } from 'src/services/tasks/tasks.service';
+import { TasksService } from 'src/services/task/tasks.service';
 import { TaskStatus } from '../../utilities/types/task/task-status.enum';
 import { TaskQueryFilterDto } from 'src/utilities/dtos/tasks/task-query-filter.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('tasks')
+@UseGuards(AuthGuard())
 export class TasksController {
   constructor(private tasksService: TasksService) {}
 
