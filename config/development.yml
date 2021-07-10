@@ -1,0 +1,8 @@
+db:
+  host: 'localhost'
+  username: 'ahmedsalih'
+  password: 'psql132132'
+  synchronize: true
+
+jwt:
+  secret: 'psqlSecretWord'
