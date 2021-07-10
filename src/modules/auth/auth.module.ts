@@ -18,7 +18,6 @@ const { expiresIn, secret } = config.get('jwt');
       secret: process.env.JWT_SECRET || secret,
       signOptions: {
         expiresIn,
-      },
     }),
     TypeOrmModule.forFeature([UserRepository]),
   ],

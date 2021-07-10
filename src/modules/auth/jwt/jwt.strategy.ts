@@ -9,6 +9,7 @@ import * as config from 'config';
 
 // grab the configs: * another way, instead of direct use*
 // const { secret: secretOrKey } = config.get('jwt');
+
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(

@@ -28,6 +28,7 @@
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/typeorm": "^7.1.5",
     "@types/bcrypt": "^5.0.0",
+
     "@types/config": "^0.0.39",
     "@types/passport-jwt": "^3.0.5",
     "@types/passport-strategy": "^0.2.35",
